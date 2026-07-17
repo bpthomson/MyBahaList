@@ -5,7 +5,7 @@ import { useApi } from '../composables/useApi'
 
 const route = useRoute()
 const router = useRouter()
-const { get } = useApi()
+const { get, api } = useApi()
 
 const userId = computed(() => route.query.user_id || '')
 const gamePlaylist = ref([])
@@ -65,10 +65,9 @@ const preloadNextSong = async () => {
   try {
     const metadata = gamePlaylist.value[Math.floor(Math.random() * gamePlaylist.value.length)]
     const proxyUrl = `/api/audio-proxy?url=${encodeURIComponent(metadata.theme_link)}`
-    const audioResponse = await fetch(proxyUrl)
-    if (!audioResponse.ok) throw new Error('Fetch failed')
+    const audioResponse = await api.get(proxyUrl, { responseType: 'arraybuffer' })
     
-    const arrayBuffer = await audioResponse.arrayBuffer()
+    const arrayBuffer = audioResponse.data
     let startOffset = -1
     
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)()

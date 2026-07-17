@@ -1,4 +1,5 @@
 import { ref, onUnmounted } from 'vue'
+import { baseURL } from './useApi'
 
 export function useSSE(url) {
   const status = ref('Connecting...')
@@ -11,7 +12,8 @@ export function useSSE(url) {
   const connect = (targetUrl) => {
     if (eventSource) eventSource.close()
     
-    eventSource = new EventSource(targetUrl)
+    const fullUrl = targetUrl.startsWith('http') ? targetUrl : `${baseURL}${targetUrl}`
+    eventSource = new EventSource(fullUrl, { withCredentials: true })
     
     eventSource.onmessage = (e) => {
       try {
