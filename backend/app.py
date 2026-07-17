@@ -19,7 +19,7 @@ app.config.from_object(Config)
 app.secret_key = app.config['SECRET_KEY']
 
 # Enable CORS for Vue frontend
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:4173", "https://mbl.caizz.me"])
 
 if not os.path.exists(app.config['OUTPUT_FOLDER']): 
     os.makedirs(app.config['OUTPUT_FOLDER'])
