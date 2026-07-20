@@ -395,7 +395,7 @@ input.incorrect {
   letter-spacing: 1px;
   font-size: 15px;
 }
-.navbar-links a {
+.navbar-links a, .term-link {
   color: #8b949e;
   text-decoration: none;
   font-size: 12px;
@@ -403,7 +403,7 @@ input.incorrect {
   transition: 0.2s;
   font-family: monospace;
 }
-.navbar-links a:hover {
+.navbar-links a:hover, .term-link:hover {
   color: #fff;
 }
 

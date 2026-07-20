@@ -42,10 +42,10 @@ const terminateAndReturn = () => {
         <a :href="downloadLink" class="btn btn-primary" style="flex: 1; text-decoration: none;">Download Archive</a>
         <router-link :to="`/select/${userId}`" class="btn btn-secondary" style="flex: 1; text-decoration: none;">Return</router-link>
       </div>
-      <div v-else class="main-actions" style="margin-top: 20px;">
-        <button @click="terminateAndReturn" class="btn btn-outline" style="flex: 1;">
-          {{ error ? 'Return to Selection' : '⏹ Terminate & Return' }}
-        </button>
+      <div v-else class="main-actions" style="margin-top: 20px; display: flex; justify-content: center;">
+        <a @click="terminateAndReturn" class="term-link" style="cursor: pointer; margin-left: 0;">
+          [ Terminate Session ]
+        </a>
       </div>
     </template>
   </StreamingLog>
